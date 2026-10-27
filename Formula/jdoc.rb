@@ -7,13 +7,12 @@ class Jdoc < Formula
   license "MIT"
 
   depends_on :macos
-  depends_on "openjdk"
+  depends_on "openjdk@25"
 
   def install
     libexec.install "jdoc-#{version}.jar" => "jdoc.jar"
     (bin/"jdoc").write <<~SH
-      #!/bin/sh
-      exec "#{formula_opt_bin("openjdk")}/java" -jar "#{libexec}/jdoc.jar" "$@"
+      exec "#{formula_opt_bin("openjdk@25")}/java" -jar "#{libexec}/jdoc.jar" "$@"
     SH
     chmod 0755, bin/"jdoc"
   end
